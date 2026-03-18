@@ -71,14 +71,14 @@ export default function Heatmap({ data = [], title = 'Heatmap' }) {
 	)
 
 	const eventTypes = useMemo(() => [
-		{ id: null, name: 'All events' },
+		{ id: null, name: 'Alla händelser' },
 		...Array.from(
 			new Map(allEvents.map((e) => [e.type.id, e.type])).values()
 		).sort((a, b) => a.name.localeCompare(b.name)),
 	], [allEvents])
 
 	const teams = useMemo(() => [
-		{ id: null, name: 'Both teams' },
+		{ id: null, name: 'Båda lagen' },
 		...Array.from(
 			new Map(allEvents.map((e) => [e.team.id, e.team])).values()
 		).sort((a, b) => a.name.localeCompare(b.name)),
@@ -127,7 +127,7 @@ export default function Heatmap({ data = [], title = 'Heatmap' }) {
 			{/* Filter controls */}
 			<div className="flex flex-wrap gap-10">
 				<label className="flex flex-col gap-1 text-sm text-gray-400">
-					Team
+					Lag
 					<select
 						className="cursor-pointer rounded bg-gray-700 px-3 py-2 text-white outline-none focus:ring-2 focus:ring-blue-500"
 						value={teamId ?? ''}
@@ -142,7 +142,7 @@ export default function Heatmap({ data = [], title = 'Heatmap' }) {
 				</label>
 
 				<label className="flex flex-col gap-1 text-sm text-gray-400">
-					Event type
+					Händelse
 					<select
 						className="cursor-pointer rounded bg-gray-700 px-3 py-2 text-white outline-none focus:ring-2 focus:ring-blue-500"
 						value={typeId ?? ''}

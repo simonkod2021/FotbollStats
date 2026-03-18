@@ -1,6 +1,7 @@
 import { Header } from './components/header'
 import { Footer } from './components/footer'
 import Heatmap from './components/Heatmap'
+import {Aside } from './components/aside'
 import { Routes, Route } from 'react-router'
 import barcelonaAlaves from './data/Barcelona-Alaves.json'
 import evertonBristol from './data/EvertonLFC-BristolCityLFC.json'
@@ -12,6 +13,7 @@ function App() {
     <div className="flex min-h-screen flex-col">
       <Header />
       <div className="flex flex-1">
+        <Aside />
         <Routes>
           <Route path="/barcelona-vs-deportivo-alaves" element={<Heatmap data={barcelonaAlaves} title="Heatmap · Barcelona vs Deportivo Alavés" />} />
           <Route path="/everton-vs-bristol-city" element={<Heatmap data={evertonBristol} title="Heatmap · Everton LFC vs Bristol City LFC" />} />
