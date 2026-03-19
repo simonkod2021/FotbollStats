@@ -1,19 +1,16 @@
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import Chart from 'react-apexcharts'
 
 export default function BarChart({ data = [], title = 'Bar Chart' }) {
 	const [groupBy, setGroupBy] = useState('eventType') // 'eventType' or 'team'
 
-	const allEvents = useMemo(
-		() => data.filter((e) => Array.isArray(e.location)),
-		[data]
-	)
+	const allEvents = data.filter((event) => Array.isArray(event.location))
 
-	const chartData = useMemo(() => {
+	const chartData = (() => {
 		if (groupBy === 'eventType') {
 			const grouped = {}
-			for (const e of allEvents) {
-				const type = e.type.name
+			for (const event of allEvents) {
+				const type = event.type.name
 				grouped[type] = (grouped[type] || 0) + 1
 			}
 
@@ -27,8 +24,8 @@ export default function BarChart({ data = [], title = 'Bar Chart' }) {
 			}
 		} else {
 			const grouped = {}
-			for (const e of allEvents) {
-				const team = e.team.name
+			for (const event of allEvents) {
+				const team = event.team.name
 				grouped[team] = (grouped[team] || 0) + 1
 			}
 
@@ -39,7 +36,7 @@ export default function BarChart({ data = [], title = 'Bar Chart' }) {
 				categories: sorted.map(([team]) => team),
 			}
 		}
-	}, [allEvents, groupBy])
+	})()
 
 	const chartOptions = {
 		chart: {
@@ -52,19 +49,19 @@ export default function BarChart({ data = [], title = 'Bar Chart' }) {
 			bar: {
 				borderRadius: 6,
 				horizontal: false,
-				columnWidth: '70%',
+				columnWidth: '50%',
 				dataLabels: { position: 'top' },
 			},
 		},
 		dataLabels: {
 			enabled: true,
 			offsetY: -25,
-			style: { colors: ['#a3a3a3'], fontSize: '12px', fontWeight: 600 },
+			style: { colors: ['#a3a3a3'], fontSize: '15px', fontWeight: 600 },
 		},
 		xaxis: {
 			categories: chartData.categories,
 			labels: {
-				style: { colors: '#a3a3a3', fontSize: '12px' },
+				style: { colors: '#a3a3a3', fontSize: '15px' },
 			},
 			axisBorder: { show: false },
 			axisTicks: { show: false },
