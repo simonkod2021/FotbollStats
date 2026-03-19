@@ -2,7 +2,7 @@ import Chart from 'react-apexcharts'
 
 export default function RadarChart({ data=[], title = 'Radar Chart' }) {
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full  text-center">
+    <div className="flex flex-col items-center justify-center h-full w-full text-center">
       <h2 className="text-2xl font-bold mt-6">{title}</h2>
       <Chart
         options={{
