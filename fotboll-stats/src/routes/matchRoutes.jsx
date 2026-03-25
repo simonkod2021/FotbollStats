@@ -1,7 +1,10 @@
-import barcelonaAlaves from '../../data/Barcelona-Alaves.json'
-import evertonBristol from '../../data/EvertonLFC-BristolCityLFC.json'
-import realValladolidBarcelona from '../../data/Real Valladolid-Barcelona.json'
-import westHamLiverpool from '../../data/WestHamLFC-LiverpoolWFC.json'
+import barcelonaAlaves from '../data/Barcelona-Alaves.json'
+import evertonBristol from '../data/EvertonLFC-BristolCityLFC.json'
+import realValladolidBarcelona from '../data/Real Valladolid-Barcelona.json'
+import westHamLiverpool from '../data/WestHamLFC-LiverpoolWFC.json'
+import arsenalCharton from '../data/Arsenal-CharltonAthletic.json'
+import chelseaTottenham from '../data/ChelseaFCW-TottenhamWomen.json'
+
 export const MATCH_ROUTES = [
   {
     id: 'barcelona-alaves',
@@ -31,4 +34,20 @@ export const MATCH_ROUTES = [
     data: westHamLiverpool,
     title: 'Heatmap · West Ham LFC vs Liverpool WFC',
   },
+  {
+    id: 'arsenal-charlton',
+    label: 'Arsenal vs Charlton',
+    path: '/arsenal-vs-charlton',
+    data: arsenalCharton,
+    title: 'Heatmap · Arsenal LFC vs Charlton LFC',
+  },
+  {
+    id: 'chelsea-tottenham',
+    label: 'Chelsea vs Tottenham',
+    path: '/chelsea-vs-tottenham',
+    data: chelseaTottenham,
+    title: 'Heatmap · Chelsea LFC vs Tottenham LFC',
+  },
 ]
+
+export const DEFAULT_MATCH_ROUTE = MATCH_ROUTES[0]

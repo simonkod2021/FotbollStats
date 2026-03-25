@@ -1,50 +1,43 @@
 import Chart from 'react-apexcharts'
 
-export default function RadarChart({ data=[], title = 'Radar Chart' }) {
-  return (
-    <div className="flex flex-col items-center justify-center h-full w-full text-center">
-      <h2 className="text-2xl font-bold mt-6">{title}</h2>
-      <Chart
-        options={{
-          chart: {
+export default function RadarChart({ data = [], title = 'Radardiagram' }) {
+    const series = [
+        {
+            name: 'Antal events',
+            data: data.map((item) => item.value),
+        },
+    ]
+
+    const options = {
+        chart: {
             type: 'radar',
-            background: 'transparent',
-          },
-          colors: ['#3b82f6'],
-          plotOptions: {
-            radar: {
-              polygons: {
-                strokeColors: '#ffffff1a',
-                fill: { colors: ['#ffffff0d', '#ffffff1a'] },
-              },
-            },
-          },
-          dataLabels: {
-            enabled: true,
-            style: { colors: ['#a3a3a3'], fontSize: '8px', fontWeight: 600 },
-          },
-          xaxis: {
-            categories: data.map(({ category }) => category),
-            labels: {
-              style: { colors: '#a3a3a3', fontSize: '15px' },
-            },
-          },
-          yaxis: {
-            stepSize: 100,
-            labels: { style: { colors: '#a3a3a3' } },
-          },
-          tooltip: {
-            theme: 'dark',
-          },
-          states: {
-            hover: { filter: { type: 'darken', value: 0.1 } },
-          },
-        }}
-        series={[{ name: 'Value', data: data.map(({ value }) => value) }]}
-        type="radar"
-        height={750}
-        width={750}
-      />
-    </div>
-  )
+            toolbar: { show: true },
+        },
+        grid: {
+          padding: {
+            top: 50,
+            right: 50,
+            bottom: 50,
+            left: 50
+          }
+        },
+        xaxis: {
+            categories: data.map((item) => item.category),
+            labels: { style: { colors: '#ffffff', fontSize: '12px', fontWeight: 'bold' } },
+        },
+        yaxis: {
+            labels: { style: { colors: '#ffffff', fontSize: '12px'} },
+        },
+        colors: ['#3b82f6'],
+        stroke: { width: 2 },
+        fill: { opacity: 0.25 },
+        markers: { size: 4 },
+    }
+
+    return (
+        <div className="flex h-full w-full flex-col items-center justify-center gap-6 text-center">
+            <h2 className="text-2xl font-bold text-white">{title}</h2>
+            <Chart options={options} series={series} type="radar" width={750} height={750} />
+        </div>
+    )
 }

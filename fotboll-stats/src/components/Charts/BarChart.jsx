@@ -1,40 +1,39 @@
 import { useState } from 'react'
 import Chart from 'react-apexcharts'
 
+
+function getEventChoice(event, groupBy) {
+	if (groupBy === 'team') {
+		return event.team?.name
+	}
+
+	return event.type?.name
+}
+
 export default function BarChart({ data = [], title = 'Bar Chart' }) {
-	const [groupBy, setGroupBy] = useState('eventType') // 'eventType' or 'team'
+	const [choice, setChoice] = useState('');
 
 	const allEvents = data.filter((event) => Array.isArray(event.location))
 
 	const chartData = (() => {
-		if (groupBy === 'eventType') {
-			const grouped = {}
-			for (const event of allEvents) {
-				const type = event.type.name
-				grouped[type] = (grouped[type] || 0) + 1
-			}
+		const grouped = {}
 
-			const sorted = Object.entries(grouped)
-				.sort((a, b) => b[1] - a[1])
-				.slice(0, 15) // Top 15 event types
+		for (const event of allEvents) {
+			const label = getEventChoice(event, choice)
+			if (!label) continue
 
-			return {
-				series: [{ name: 'Events', data: sorted.map(([_, count]) => count) }],
-				categories: sorted.map(([type]) => type),
-			}
-		} else {
-			const grouped = {}
-			for (const event of allEvents) {
-				const team = event.team.name
-				grouped[team] = (grouped[team] || 0) + 1
-			}
+			grouped[label] = (grouped[label] || 0) + 1
+		}
 
-			const sorted = Object.entries(grouped).sort((a, b) => b[1] - a[1])
+		let sorted = Object.entries(grouped).sort((a, b) => b[1] - a[1])
 
-			return {
-				series: [{ name: 'Events', data: sorted.map(([_, count]) => count) }],
-				categories: sorted.map(([team]) => team),
-			}
+		if (choice === 'eventType') {
+			sorted = sorted.slice(0, 15)
+		}
+
+		return {
+			series: [{ name: 'Events', data: sorted.map((entry) => entry[1]) }],
+			categories: sorted.map((entry) => entry[0]),
 		}
 	})()
 
@@ -88,19 +87,19 @@ export default function BarChart({ data = [], title = 'Bar Chart' }) {
 
 			<div className="flex gap-4">
 				<label className="flex flex-col gap-1 text-sm text-gray-400">
-					Group by
+					Sortera efter
 					<select
 						className="cursor-pointer rounded bg-gray-700 px-3 py-2 text-white outline-none focus:ring-2 focus:ring-blue-500"
-						value={groupBy}
-						onChange={(e) => setGroupBy(e.target.value)}
+						value={choice}
+						onChange={(e) => setChoice(e.target.value)}
 					>
-						<option value="eventType">Event Type</option>
-						<option value="team">Team</option>
+						<option value="eventType">Eventtyp</option>
+						<option value="team">Lag</option>
 					</select>
 				</label>
 			</div>
 
-			<p className="text-sm text-gray-500">{allEvents.length.toLocaleString()} total events</p>
+			<p className="text-sm text-gray-500">{allEvents.length.toLocaleString()} totalt antal events</p>
 
 			<div className="w-full rounded-xl bg-gray-800 p-6 shadow-2xl ring-1 ring-white/10">
 				<Chart
