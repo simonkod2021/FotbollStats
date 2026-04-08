@@ -1,20 +1,16 @@
 import { useEffect, useState } from "react";
-import { DefaultMatchRoute, MatchRoutes } from "../routes/matchRoutes.jsx";
+import { MatchRoutes } from "../routes/matchRoutes.jsx";
 import { CHART_TYPES } from "../routes/chartRoutes.jsx";
 
 export function useChartData() {
-  const [selectedMatchPath, setSelectedMatchPath] = useState(
-    DefaultMatchRoute?.path ?? "",
-  );
+  const [selectedMatchPath, setSelectedMatchPath] = useState(MatchRoutes[0].path);
   const [selectedChartType, setSelectedChartType] = useState(CHART_TYPES[0].id);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const selectedMatch =
-    MatchRoutes.find((matchRoute) => matchRoute.path === selectedMatchPath) ??
-    DefaultMatchRoute;
+    MatchRoutes.find((matchRoute) => matchRoute.path === selectedMatchPath) || null;
 
-  // Ladda data dynamiskt när match ändras
   useEffect(() => {
     if (!selectedMatch?.loadData) {
       setData([]);

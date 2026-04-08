@@ -4,14 +4,20 @@ import { MatchRoutes } from "../routes/matchRoutes.jsx";
 import { SlArrowLeftCircle } from "react-icons/sl";
 import { SlArrowRightCircle } from "react-icons/sl";
 
-
-
 export const Aside = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   const AsideToggle = {
-    open: { className: "text-4xl", icon: <SlArrowLeftCircle size={40}/>, ariaLabel: "Stäng meny" },
-    close: { className: "text-4xl", icon: <SlArrowRightCircle  size={40}/>, ariaLabel: "Öppna meny" },
+    open: {
+      className: "text-4xl",
+      icon: <SlArrowLeftCircle size={40} />,
+      ariaLabel: "Stäng meny",
+    },
+    close: {
+      className: "text-4xl",
+      icon: <SlArrowRightCircle size={40} />,
+      ariaLabel: "Öppna meny",
+    },
   };
 
   const linkClassName = ({ isActive }) =>

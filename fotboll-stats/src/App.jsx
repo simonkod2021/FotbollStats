@@ -1,8 +1,7 @@
-import { Header } from './components/header'
-import { Footer } from './components/footer'
-import { Aside } from './components/aside'
-import { AppRoutes } from './routes/AppRoutes.jsx'
-
+import { Header } from "./components/header";
+import { Footer } from "./components/footer";
+import { Aside } from "./components/aside";
+import { AppRoutes } from "./routes/AppRoutes.jsx";
 
 function App() {
   return (
@@ -14,7 +13,7 @@ function App() {
       </div>
       <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

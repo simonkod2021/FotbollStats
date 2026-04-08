@@ -60,11 +60,11 @@ export function useHeatmapData(data = []) {
     availableTeams,
     filteredEvents,
     heatmapDots,
-    PITCH_CANVAS_WIDTH,
-    PITCH_CANVAS_HEIGHT,
-    PIXELS_PER_X_UNIT,
-    PIXELS_PER_Y_UNIT,
-    STATSBOMB_PITCH_WIDTH,
-    STATSBOMB_PITCH_HEIGHT,
+    pitchWidth: PITCH_CANVAS_WIDTH,
+    pitchHeight: PITCH_CANVAS_HEIGHT,
+    pixelsPerXUnit: PIXELS_PER_X_UNIT,
+    pixelsPerYUnit: PIXELS_PER_Y_UNIT,
+    statsbombPitchWidth: STATSBOMB_PITCH_WIDTH,
+    statsbombPitchHeight: STATSBOMB_PITCH_HEIGHT,
   };
 }

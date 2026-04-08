@@ -3,7 +3,6 @@ import HeatmapCanvas from "./HeatmapCanvas";
 import HeatmapFilters from "./HeatmapFilters";
 import HeatmapLegend from "./HeatmapLegend";
 
-// Main component, takes data prop (array of events) and optional title prop
 export default function Heatmap({ data = [], title = "Heatmap" }) {
   const {
     selectedEventTypeId,
@@ -14,11 +13,11 @@ export default function Heatmap({ data = [], title = "Heatmap" }) {
     availableTeams,
     filteredEvents,
     heatmapDots,
-    PITCH_CANVAS_WIDTH,
-    PITCH_CANVAS_HEIGHT,
-    PIXELS_PER_X_UNIT,
-    PIXELS_PER_Y_UNIT,
-    STATSBOMB_PITCH_WIDTH,
+    pitchWidth,
+    pitchHeight,
+    pixelsPerXUnit,
+    pixelsPerYUnit,
+    statsbombPitchWidth,
   } = useHeatmapData(data);
 
   return (
@@ -38,11 +37,11 @@ export default function Heatmap({ data = [], title = "Heatmap" }) {
 
       <HeatmapCanvas
         heatmapDots={heatmapDots}
-        pitchCanvasWidth={PITCH_CANVAS_WIDTH}
-        pitchCanvasHeight={PITCH_CANVAS_HEIGHT}
-        pixelsPerXUnit={PIXELS_PER_X_UNIT}
-        pixelsPerYUnit={PIXELS_PER_Y_UNIT}
-        statsbombPitchWidth={STATSBOMB_PITCH_WIDTH}
+        pitchCanvasWidth={pitchWidth}
+        pitchCanvasHeight={pitchHeight}
+        pixelsPerXUnit={pixelsPerXUnit}
+        pixelsPerYUnit={pixelsPerYUnit}
+        statsbombPitchWidth={statsbombPitchWidth}
       />
 
       <HeatmapLegend />

@@ -42,5 +42,3 @@ export const MatchRoutes = [
     title: "Heatmap · Chelsea LFC vs Tottenham LFC",
   },
 ];
-
-export const DefaultMatchRoute = MatchRoutes[0];
