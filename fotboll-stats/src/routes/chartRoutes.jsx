@@ -1,14 +1,14 @@
 export const CHART_TYPES = [
   {
-    id: 'bar',
-    label: 'Stapeldiagram',
+    id: "bar",
+    label: "Stapeldiagram",
   },
   {
-    id: 'radar',
-    label: 'Radar Diagram',
+    id: "radar",
+    label: "Radar Diagram",
   },
   {
-    id: 'pie',
-    label: 'Cirkeldiagram',
+    id: "pie",
+    label: "Cirkeldiagram",
   },
-]
+];

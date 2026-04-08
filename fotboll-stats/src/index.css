@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
-body{
-  font-family: 'Roboto', sans-serif;
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+main {
+  background-image: url("src/assets/background.webp");
+  background-size: cover;
+  background-position: center;
+  margin: 1em;
 }
