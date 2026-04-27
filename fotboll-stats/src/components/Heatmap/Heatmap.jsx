@@ -21,7 +21,7 @@ export default function Heatmap({ data = [], title = "Heatmap" }) {
   } = useHeatmapData(data);
 
   return (
-    <main className="flex flex-1 flex-col items-center gap-6 pt-8">
+    <main className="flex flex-1 flex-col items-center gap-6 pt-4">
       <HeatmapFilters
         selectedTeamId={selectedTeamId}
         setSelectedTeamId={setSelectedTeamId}
@@ -30,11 +30,11 @@ export default function Heatmap({ data = [], title = "Heatmap" }) {
         setSelectedEventTypeId={setSelectedEventTypeId}
         availableEventTypes={availableEventTypes}
       />
-
-      <p className="text-sm text-gray-500">
+      <h3 className="font-bold tracking-wide text-white">{title}</h3>
+      <p className="text-sm">
         {filteredEvents.length.toLocaleString()} events
       </p>
-
+      
       <HeatmapCanvas
         heatmapDots={heatmapDots}
         pitchCanvasWidth={pitchWidth}
@@ -45,7 +45,6 @@ export default function Heatmap({ data = [], title = "Heatmap" }) {
       />
 
       <HeatmapLegend />
-      <h3 className="font-bold tracking-wide text-white p-10">{title}</h3>
     </main>
   );
 }

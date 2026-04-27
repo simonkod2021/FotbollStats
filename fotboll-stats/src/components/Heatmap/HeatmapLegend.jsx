@@ -1,6 +1,6 @@
 export default function HeatmapLegend() {
   return (
-    <div className="flex items-center gap-3 text-xs text-gray-400">
+    <div className="flex items-center gap-3 text-xs">
       <span>Färre events</span>
       <div
         className="h-3 w-48 rounded-full"

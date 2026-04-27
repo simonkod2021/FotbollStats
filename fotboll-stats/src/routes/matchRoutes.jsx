@@ -41,4 +41,11 @@ export const MatchRoutes = [
     loadData: () => import("../data/ChelseaFCW-TottenhamWomen.json"),
     title: "Heatmap · Chelsea LFC vs Tottenham LFC",
   },
+  {
+    id: "not-found",
+    label:"",
+    path:"*",
+    loadData: null,
+    title: "Select a match to view the heatmap"
+  }
 ];

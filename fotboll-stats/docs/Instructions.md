@@ -1,3 +1,13 @@
+# Features
+
+Lazy-loading of data and imports
+Lightning-fast re rendering
+Heatmaps powered by StatsBomb open data
+Various available charts
+Loaders for slow connections
+Sorting and filtering
+
+
 # Data
 
 All data that is used comes from StatsBomb Open Data
@@ -31,6 +41,12 @@ The code only reads these events and show them to the UI, we dont show the perso
 
 The data is used like a JavaScript object, the Heatmaps that are generated works like grids where events are populated as small circles within every cell. You can filter out specific events with a simple selector dropdown.
 
+### How the heatmap works
+
+Currently, the heatmap works with locations and events. Every event has a location on the pitch in X/Y coordinates, which gets marked on the pitch as a colored "dot". 
+
 ## Diagrams
 
 The same data is used to generate the diagrams, we just use them together with different types of diagrams from ApexCharts. Currently only works with BarChart, PieChart and RadarChart.
+
+

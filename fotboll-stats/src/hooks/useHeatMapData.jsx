@@ -16,6 +16,8 @@ export function useHeatmapData(data = []) {
   const [selectedEventTypeId, setSelectedEventTypeId] = useState(null);
   const [selectedTeamId, setSelectedTeamId] = useState(null);
 
+  // Filtrerar ut händelser utan platsdata i Heatmap-komponenten
+  // Kontrollerar att "location" är en array
   const eventsWithLocation = data.filter((event) =>
     Array.isArray(event.location),
   );

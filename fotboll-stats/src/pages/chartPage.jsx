@@ -81,7 +81,7 @@ export const ChartPage = () => {
       <div className="flex w-full flex-1 justify-center">
         {loading ? (
           <div className="flex items-center justify-center">
-            <MoonLoader size={60} />
+            <MoonLoader size={60} color="#36d7b7" />
           </div>
         ) : (
           chartByType[selectedChartType]

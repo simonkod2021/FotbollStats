@@ -10,36 +10,36 @@ export const PIXELS_PER_Y_UNIT = PITCH_CANVAS_HEIGHT / STATSBOMB_PITCH_HEIGHT;
 const DENSITY_GRID_COLUMNS = 30;
 const DENSITY_GRID_ROWS = 20;
 
-export function getHeatColor(intensity) {
-  if (intensity <= 0) return null;
+export function getHeatColor(color) {
+  if (color <= 0) return null;
 
   let red;
   let green;
   let blue;
 
-  if (intensity < 0.25) {
-    const segmentProgress = intensity / 0.25;
+  if (color < 0.25) {
+    const progress = color / 0.25;
     red = 0;
-    green = Math.round(segmentProgress * 255);
+    green = progress * 255;
     blue = 255;
-  } else if (intensity < 0.5) {
-    const segmentProgress = (intensity - 0.25) / 0.25;
+  } else if (color < 0.5) {
+    const progress = (color - 0.25) / 0.25;
     red = 0;
     green = 255;
-    blue = Math.round((1 - segmentProgress) * 255);
-  } else if (intensity < 0.75) {
-    const segmentProgress = (intensity - 0.5) / 0.25;
-    red = Math.round(segmentProgress * 255);
+    blue = (1 - progress) * 255;
+  } else if (color < 0.75) {
+    const progress = (color - 0.5) / 0.25;
+    red = progress * 255;
     green = 255;
     blue = 0;
   } else {
-    const segmentProgress = (intensity - 0.75) / 0.25;
+    const progress = (color - 0.75) / 0.25;
     red = 255;
-    green = Math.round((1 - segmentProgress) * 255);
+    green = (1 - progress) * 255;
     blue = 0;
   }
 
-  const opacity = 0.25 + intensity * 0.55;
+  const opacity = 0.25 + color * 0.55;
   return `rgba(${red},${green},${blue},${opacity})`;
 }
 
