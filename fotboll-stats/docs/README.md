@@ -1,18 +1,109 @@
-# React + Vite
+# Fotboll Stats
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interaktiv React-app för att visualisera StatsBomb Open Data som:
 
-Currently, two official plugins are available:
+- heatmaps för matchhändelser
+- stapel-, radar- och cirkeldiagram
+- filtrering på lag och händelsetyp
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Teknik
 
-## React Compiler
+- React 19 + Vite 8
+- React Router
+- ApexCharts (`react-apexcharts`)
+- Konva (`react-konva`) för heatmap-canvas
+- Tailwind CSS
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Kom igång
 
-Note: This will impact Vite dev & build performances.
+### 1) Installera beroenden
 
-## Expanding the ESLint configuration
+```bash
+pnpm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 2) Starta utvecklingsserver
+
+```bash
+pnpm dev
+```
+
+### 3) Bygg för produktion
+
+```bash
+pnpm build
+```
+
+### 4) Förhandsgranska build
+
+```bash
+pnpm preview
+```
+
+### 5) Linta projektet
+
+```bash
+pnpm lint
+```
+
+## Funktioner
+
+- Lazy loading av routes och matchdata
+- Loading states med spinner
+- Heatmap baserad på händelsetäthet
+- Dropdown-filter för:
+	- lag
+	- händelsetyp
+- Diagramvy med val av match och diagramtyp
+
+## Projektstruktur (kort)
+
+```text
+src/
+	components/
+		Heatmap/
+		Charts/
+	hooks/
+		useMatchData.jsx
+		useHeatMapData.jsx
+		useChartData.jsx
+	routes/
+		AppRoutes.jsx
+		matchRoutes.jsx
+		chartRoutes.jsx
+	data/
+```
+
+## Data
+
+Datakällan är StatsBomb Open Data:
+
+https://github.com/statsbomb/open-data
+
+Appen läser event-data (t.ex. `Pass`, `Dribble`, `Shot`) och visualiserar dem utan att ändra originaldatasetet.
+
+## Lägg till en ny match
+
+1. Ladda ner en matchfil från StatsBombs `data/events`.
+2. Lägg JSON-filen i `src/data/`.
+3. Registrera matchen i `src/routes/matchRoutes.jsx`.
+
+Exempel:
+
+```jsx
+{
+	id: "barcelona-alaves",
+	label: "Barcelona vs Deportivo Alavés",
+	path: "/barcelona-vs-deportivo-alaves",
+	loadData: () => import("../data/Barcelona-Alaves.json"),
+	title: "Heatmap · Barcelona vs Deportivo Alavés",
+}
+```
+
+> Tips: Säkerställ att `id` och `path` är unika.
+
+## Vanliga problem
+
+- **Tom vy:** kontrollera att filnamn i `loadData` matchar exakt filen i `src/data/`.
+- **Ingen data i heatmap:** kontrollera att events innehåller `location` som `[x, y]`.
+- **Fel route:** kontrollera att `path` i `matchRoutes.jsx` är korrekt.

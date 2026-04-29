@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect,useState } from "react";
 
 export function useMatchData(matchRoute) {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!matchRoute?.loadData) {
-      setData([]);
       setLoading(false);
       return;
     }
-
     setLoading(true);
     setError(null);
 
@@ -23,7 +21,6 @@ export function useMatchData(matchRoute) {
       .catch((err) => {
         console.error("Kunde inte ladda matchdata:", err);
         setError(err);
-        setData([]);
       })
       .finally(() => {
         setLoading(false);
