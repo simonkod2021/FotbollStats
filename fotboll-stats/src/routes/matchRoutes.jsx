@@ -42,10 +42,17 @@ export const MatchRoutes = [
     title: "Heatmap · Chelsea LFC vs Tottenham LFC",
   },
   {
+    id: "southampton-newcastle",
+    label: "Southampton vs Newcastle",
+    path: "/southampton-vs-newcastle",
+    loadData: () => import("../data/Southampton-Newcastle.json"),
+    title: "Heatmap · Southampton vs Newcastle",
+  },
+  {
     id: "not-found",
-    label:"",
-    path:"*",
+    label: "",
+    path: "*",
     loadData: null,
-    title: "Select a match to view the heatmap"
-  }
+    title: "Select a match to view the heatmap",
+  },
 ];

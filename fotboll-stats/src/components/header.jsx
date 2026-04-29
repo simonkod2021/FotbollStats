@@ -11,7 +11,7 @@ export const Header = () => {
         />
       </a>
       <div className="flex flex-1 flex-col items-center justify-center gap-2">
-        <h1 className="bg-linear-to-bl from-white via-gray-400 to-gray-700 italic bg-clip-text text-3xl text-transparent tracking-wider font-bold">
+        <h1 className="bg-linear-to-bl from-white via-gray-400 to-gray-600 italic bg-clip-text text-3xl text-transparent tracking-wider font-bold">
           StatsZone
         </h1>
         <p className="text-foreground">
